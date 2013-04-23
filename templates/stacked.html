@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block jqfunct %}
+<script>    
+    $(document).ready(function(){
+        $("#vsoil tr:even").addClass('alternate');
+    });
+</script>    
+<script>
+    function MyFormatter(v, xaxis) {
+	return " ";
+    }
+
+     $(function()  {
+	var series = {{ json_data|safe }};
+        var options = {
+            legend: {
+		container: $(".legend"),
+	        //labelBoxBorderColor: "red",
+	        sorted: "reverse",
+	    },
+	    grid: {
+	        borderWidth: 0.5,
+		borderColor:'#333',
+		aboveData: false
+	    },
+	    xaxis: {
+		tickFormatter: MyFormatter,
+		tickColor: 'transparent',
+                minTickSize: 1,
+		autoscaleMargin: 0.1
+            },
+            series: {
+                bars: {
+                    show: true,
+                    barWidth: 0.5,
+                    align: "left",
+		    fill: 1
+                },
+                stack: true
+            }
+        };
+
+    $.plot("#graph", series, options);
+    $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="vertical">
+    <h2 style="text-align: center">Soil data for point ID: {{ pnt_obj.id }}</h2>     
+    <table id="vsoil">
+	<tr>
+	    <th>#</th>        
+            <th>soil type</th>
+	    <th>height upper edge (NAP)</th>        
+	    <th>height lower edge (NAP)</th>
+	</tr>    
+	{% for d in data %}    
+	<tr>
+	    <td><div style="background: {{ d.3 }}; width: 20px; height: 20px;"></div></td>
+	    <td>{{ d.2 }}</td>
+	    <td>{{ d.0|floatformat:"2" }}</td>
+	    <td>{{ d.1|floatformat:"2" }}</td>
+	</tr>
+
+	{% endfor %}
+    </table>
+</div>
+
+
+<div class="wrapper">    
+    <h2  style="text-align: center">Profiel point ID: {{ pnt_obj.id }}</h2>
+    <div id="graph"></div>
+</div>
+<!--<div class="legend"></div>-->
+
+
+
+
+
+<div id="leaflet_popup"></div>
+        <script type="text/javascript">
+	       //var latlngs = {{ xy_start_end|safe }};
+	       var latlong = [{{ pnt_obj.latitude|safe}},{{ pnt_obj.longitude|safe}}]
+	       var map = L.map('leaflet_popup').setView(latlong, 12);
+	       L.tileLayer('http://{s}.tile.cloudmade.com/439299294ed945808af82774cd1b55a0/997/256/{z}/{x}/{y}.png', {
+	       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+	       maxZoom: 18
+	       }).addTo(map);
+	       var marker = L.marker(latlong).addTo(map);
+	       var table = "<table id='vsoil'><tr><th>id</th><th>x</th><th>y</th><th>source</th><th>name</th></tr><td>{{ pnt_obj.id }}</td><td>{{ pnt_obj.x }}</td><td>{{ pnt_obj.y }}</td><td>{{ pnt_obj.source }}</td><td>{{ pnt_obj.name|slugify }}</td><tr></table><br><a href='edit?id={{ pnt_obj.id }}' target'_blank'>edit</a>";
+	       marker.bindPopup(table).openPopup();
+	       //marker.bindPopup("<b>Location point ID {{ pnt_obj.id }} </b>").openPopup();
+	</script>
+
+
+
+
+
+{% endblock %}
+
+
+

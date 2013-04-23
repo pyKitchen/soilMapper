@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block jqfunct %}
+<script>
+</script>
+{% endblock %}
+
+{% block content %}
+    
+
+	 <div id="leaflet_map"></div>
+	 	<script type="text/javascript">
+			//var latlngs = {{ xy_start_end|safe }};
+		
+			var map = L.map('leaflet_map').setView({{zoom|safe}}, 13);
+			L.tileLayer('http://{s}.tile.cloudmade.com/439299294ed945808af82774cd1b55a0/997/256/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+                        maxZoom: 18
+			}).addTo(map);
+                        
+                        var geojsonFeature = {{ geo_json|safe }}
+                        
+                        /*
+			var geojsonFeature = {'geometry':
+                                                    {'type': 'MultiPoint',
+                                                    'coordinates': [[4.939, 52.33], [4.9409, 52.33]]
+                                                    },
+                                                    'type': 'Feature',
+                                                    'properties':
+                                                        {'id': '6','popupContent': 'id=6'}
+                                                    };
+                         */                           
+			//var geojsonFeature = {{ geo_json_collect|safe }};54, 52.337015299067055, 4.9398852753020215), (55, 52.33714597606888, 4.940979124879499
+			//L.geoJson(geojsonFeature).addTo(map);
+                        
+                        
+
+ 			function onEachFeature(feature, layer) {
+                            layer.on('click', function (e) {
+                                    
+                                    var id = feature.properties.id
+                                    win_str = '/vsoilmap/popup?id=' + id
+                                    window.open(win_str,'mywindow')
+                                });
+                        }
+
+						
+			var geojsonMarkerOptions = {
+  				 radius: 8,
+                                 fillColor: "green",
+  				 color: "darkgreen",
+  				 weight: 0.5,
+  				 opacity: 0.8,
+  				 fillOpacity: 0.8
+			};			
+                       
+			var gj = L.geoJson(geojsonFeature, {
+				onEachFeature: onEachFeature,
+                                pointToLayer: function (feature, latlng) {
+                                return L.circleMarker(latlng, geojsonMarkerOptions);
+                        }}).addTo(map);
+                        
+                        
+                        /*
+                        gj.on('click',function(evt) {
+  			    //again, evt.target will contain the marker that was clicked
+                            //var keys = Object.keys(gj);
+  			    alert(data);
+  			    //alert(this.layer);
+                            //type,target,latlng,layerPoint,containerPoint,originalEvent,layer
+                            
+                            //window.open('/type','mywindow','width=400,height=200')
+                        });
+                        
+                        	
+			var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/439299294ed945808af82774cd1b55a0/997/256/{z}/{x}/{y}.png',
+                            cloudmadeAttribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>';
+
+			var base   = L.tileLayer(cloudmadeUrl, {attribution: cloudmadeAttribution});			
+			
+			function onEachFeature(feature, layer) {
+                            // does this feature have a property named popupContent?
+                            if (feature.properties && feature.properties.popupContent) {
+                        	layer.bindPopup(feature.properties.popupContent);
+                        	}
+			}
+						
+			var geojsonMarkerOptions = {
+  				 radius: 2.5,
+                                 fillColor: "green",
+  				 color: "darkgreen",
+  				 weight: 0.5,
+  				 opacity: 0.8,
+  				 fillOpacity: 0.8
+			};			
+		
+			//var geojsonFeature = {'geometry': {'type': 'MultiPoint', 'coordinates': [[4.975992205837698, 52.239430184532054], [4.976022053716023, 52.23939572095732], [4.976029541588651, 52.23938707369494], [4.9760325603267015, 52.239383596896154], [4.976036792647485, 52.23937870423279], [4.976037680584549, 52.23937767371462], [4.976039678214604, 52.23937537976464], [4.976045419901781, 52.23936874870143], [4.976049430297845, 52.23936410692646], [4.97605255267376, 52.239360504657235], [4.97605832405177, 52.23935382875723], [4.9760639620924705, 52.23934732316301], [4.976068209046242, 52.23934243054942], [4.97607409870031, 52.23933562922964], [4.976077413548074, 52.23933179394417], [4.976079662790202, 52.23932920426841], [4.976084176162471, 52.23932399800487], [4.976089651580439, 52.239317662613594], [4.976095023190171, 52.23931147066721], [4.976098101224209, 52.23930791318197], [4.976100661386064, 52.23930494709595], [4.976101342038759, 52.23930416751718], [4.976104642076015, 52.2393003501552], [4.976111759854307, 52.23929214200679], [4.976143930893815, 52.23925499011473]]}, 'type': 'Feature', 'properties': {'name': 'WW-12-92_12', 'popupContent': 'WW-12-92_12'}};
+			var geojsonFeature = {{ geo_json_collect|safe }};
+			
+			var gj = L.geoJson(geojsonFeature, {
+				onEachFeature: onEachFeature,
+                                pointToLayer: function (feature, latlng) {
+                                return L.circleMarker(latlng, geojsonMarkerOptions);
+                        }})
+    		
+                        var mpolyline = new L.MultiPolyline(latlngs, {color: 'red'});
+                            mpolyline.on('click', function(evt) {
+  			    //again, evt.target will contain the marker that was clicked
+  			    alert(latlngs);
+			    });
+    		
+    		
+    		var map = L.map('leaflet_map', {
+    		center: latlngs[0][0],
+    		zoom: 15,
+    		maxZoom: 20,
+    		layers: [base, mpolyline, gj]
+			})
+			
+						
+    		var overlayMaps = {
+  				 "Points": gj,
+  				 "Lines": mpolyline
+			};
+
+			var s = {
+			metric: true,
+			imperial: false
+			};
+			
+			L.control.layers(null,overlayMaps).addTo(map);
+			L.control.scale(s).addTo(map);
+			
+			//myLayer.addData(geojsonFeature).bindPopup("I am a circle.");
+                        
+                        */
+	</script>
+
+
+
+
+
+{% endblock %}
+
+
+

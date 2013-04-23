@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load url from future %}
+{% block jqfunct %}
+<script>
+</script>
+{% endblock %}
+{% block content %}
+
+<div id="log_in">
+	{% if flag == 'red' %}
+		<p id="error">{{ msg }}</p>
+	{% else %}
+		{% if flag == 'white' %}
+			<h1>{{ msg }}</h1>
+		{% else %}
+			<p id="success">{{ msg }}</p>
+		{% endif %}
+	{% endif %}
+	<form action="insert" enctype="multipart/form-data" method="post">{% csrf_token %}
+		{{ form_up.file }}
+		<input id="upload" type="submit" value="Upload" class="regular-subm">
+	</form>
+</div>
+{% endblock %}

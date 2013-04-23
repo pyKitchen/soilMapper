@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html>
+ <head>
+    <meta charset="utf-8">
+    <title>soilMapper - Version 1</title>
+    <meta name="description" content="Vertical soil and soiltypes">
+
+    <meta property="og:title" content="soilMapper - Version 1" />
+    <meta property="og:type" content="webapp" />
+    <meta property="og:site_name" content="soilMapper" />
+    <meta property="og:description" content="Vertical soil and soiltypes" />
+    <meta property="og:url" content="" />   
+
+
+    <link rel="shortcut icon" href="{{ STATIC_URL }}pics/favicon.ico" />
+ 
+ 
+ 	<!--pyKitchen styles-->
+ 	<link rel="stylesheet" href="{{ STATIC_URL }}pimp.css" />
+ 	
+ 	<!--leaflet styles-->
+ 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+ 	<!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+ 	<![endif]-->
+	
+	<!--google fonts styles-->
+	<link href='http://fonts.googleapis.com/css?family=Noto+Serif:700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'> 	
+ 	<!--javascript sources: leaflet, jquery, flot(local)-->
+ 	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>	
+ 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}flot/jquery.flot.js"></script>
+	<script src="https://raw.github.com/xuanluo/flot-axislabels/master/jquery.flot.axislabels.js"></script>
+ 	<!--[if lte IE 8]><script type="text/javascript" src="{{ STATIC_URL }}flot/excanvas.min.js"></script><![endif]-->
+	<script>
+	$(document).ready(function(){
+ 
+		$("#user").mouseover(function () {
+	 	    $(".user_menu").show('slow');
+		});
+		$("#user").click(function () {
+	 	    $(".user_menu").hide();
+		});
+	 });
+</script>
+
+	</script>
+ 	{% block jqfunct %}
+ 	{% endblock %}
+</head>
+<body>
+<div id="header">
+  <div id='main_nav'>
+ <h1 id="logo">SoilMapper.</h1>
+  <li class="nav"><a href="mapper">vertical soil map</a></li>
+   <li class="nav"><a href="insert">import data</a></li>
+   <li class="nav"><a href="edit?id=1">edit entries</a></li>
+  </div> 
+</div>
+
+  {% if user.is_authenticated %}
+   <div id="log_out">
+     <p id="user" class="pointer">{{ user.username }}'s soilMapper.</p>
+     <li class="user_menu"><a href="my_edits">my edits</a></li>
+     <li class="user_menu"><a href="my_uploads">my uploads</li>
+     <li class="user_menu"><a id="logout" href="logout">log me out</a></li>
+  </div>
+ {% endif %}
+         
+
+ 
+
+
+
+{% block content %}
+{% endblock %}
+<!-- 
+<footer>
+	<div id="foot">
+		-- copyright 2013 -- 
+	</div>
+</footer>
+-->
+</div>
+</body>
+</html>
+
+

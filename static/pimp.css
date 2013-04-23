@@ -1,0 +1,424 @@
+html,body {
+
+margin:0;
+padding:0;
+height:100%;
+font-family: 'Istok Web', sans-serif;
+}
+a {
+	text-decoration: none;	
+	/*border-bottom: solid darkblue 1px;*/
+	color:darkblue;
+ 
+	
+}
+
+a:hover{
+	color:#999;
+}
+
+#header {
+	margin: 0;
+	padding: 0;
+	background-color:#EEE;
+	width:100%;
+	height:100px;
+	
+	border-bottom:solid 3px #CCC;
+	}
+
+.nav {
+	display: inline;
+	list-style: none;
+	
+	
+}
+
+.nav a, .nav a:hover{
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 100;
+	color:#333;
+	
+}
+
+.nav a {
+	display: inline;
+	list-style: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 1px;
+	-moz-box-shadow: 1px 1px 2px #DDD;
+	-webkit-box-shadow: 1px 1px 2px #DDD;
+	box-shadow: 1px 1px 2px #DDD;
+	border: 1px solid #FFF; 
+
+	margin-right:6px;
+	margin-top:12px;
+	-webkit-border-top-left-radius: 15px;
+  	-webkit-border-top-right-radius: 15px;
+        
+	-moz-border-radius-topleft: 15px;
+        -moz-border-radius-topright: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px; 
+	-webkit-border-bottom-left-radius: 15px;
+  	-webkit-border-bottom-right-radius: 15px;
+        -moz-border-radius-bottomleft: 15px;
+        -moz-border-radius-bottomright: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px; 
+
+	
+}
+
+
+
+.nav a:hover{
+	color:#FFF;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 1px;
+	background:#ccc;
+	-moz-box-shadow: 1px 1px 2px #333;
+	-webkit-box-shadow: 1px 1px 2px #333;
+	box-shadow: 1px 1px 2px #333;
+	border: 1px solid #ccc; 
+
+	margin-right:6px;
+	margin-top:12px;
+
+	-webkit-border-top-left-radius: 15px;
+  	-webkit-border-top-right-radius: 15px;
+        
+	-moz-border-radius-topleft: 15px;
+        -moz-border-radius-topright: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px; 
+	-webkit-border-bottom-left-radius: 15px;
+  	-webkit-border-bottom-right-radius: 15px;
+        -moz-border-radius-bottomleft: 15px;
+        -moz-border-radius-bottomright: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px; 
+	
+	
+}
+
+.user_menu{
+	text-align: left;
+	display: none;
+	list-style: none;
+}	
+
+
+
+#main_nav{
+	width: 380px;
+	margin: 0 auto;	
+}
+
+#log_in{
+	padding: 10px;
+	width:25%;
+        height:220px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -150px;
+
+	font-size: 16px;
+	color:darkblue;
+	border: solid 5px darkblue;
+	background: #EEE;
+	
+	
+	-webkit-border-top-left-radius: 7px;
+  	-webkit-border-top-right-radius: 7px;
+        
+	-moz-border-radius-topleft: 7px;
+        -moz-border-radius-topright: 7px;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px; 
+	-webkit-border-bottom-left-radius: 7px;
+  	-webkit-border-bottom-right-radius: 7px;
+        -moz-border-radius-bottomleft: 7px;
+        -moz-border-radius-bottomright: 7px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px; 
+	
+}
+
+
+
+#log_out{
+	z-index: 2;
+	position: relative;
+	padding-left:10px;
+	padding-bottom:4px;
+	
+	font-size: 12px;
+	color:darkblue;
+	width: 15%;
+	float:right;
+	/*margin-right: 10px*/ 
+
+        
+	-webkit-border-bottom-left-radius: 5px;
+  	-webkit-border-bottom-right-radius: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; 
+
+	background:#CCC;
+	-moz-box-shadow: 0px 5px 4px #AAA;
+	-webkit-box-shadow: 0px 5px 4px #AAA;
+	box-shadow: 0px 5px 4px #AAA;
+	border-top: none;
+	border-bottom: 1px solid #BBB; 
+	border-left: 1px solid #BBB; 
+	border-right: 1px solid #BBB; 
+
+	
+}
+
+/*
+.legend table, tr, td, th{ 
+   padding: 8px;		
+   border:solid red 1px;
+}
+
+*/
+
+
+#vsoil{
+	*border-collapse: collapse; /* IE7 and lower */
+	border-spacing: 0;
+	padding: 8px;
+	font-size: 12px;
+	/*border: solid #666;*/
+}
+
+#vsoil th, #vsoil tr, #vsoil td {
+   padding: 8px;		
+   border:solid #DDD 1px;
+}
+
+#vsoil th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+
+#vsoil th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+#vsoil th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+#vsoil tr:nth-child(even) {
+    background: #EEE;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+
+.alternate {
+    background: #FFF;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+
+.wrapper, #vertical{
+	border: solid 2px #DDD;
+	background: #EEE;
+	
+	-webkit-border-top-left-radius: 7px;
+  	-webkit-border-top-right-radius: 7px;
+        
+	-moz-border-radius-topleft: 7px;
+        -moz-border-radius-topright: 7px;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px; 
+	-webkit-border-bottom-left-radius: 7px;
+  	-webkit-border-bottom-right-radius: 7px;
+        -moz-border-radius-bottomleft: 7px;
+        -moz-border-radius-bottomright: 7px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px; 
+}
+
+.wrapper{
+	float: left;
+	width: 30%;
+	height: 535px;
+	margin-top: 50px;
+	margin-left: 50px;
+
+}
+
+#leaflet_map, #wikimap{
+	z-index: 0;
+	position: absolute;
+	width:100%; 
+	height:80%;
+	margin-bottom:30px;
+}
+
+#leaflet_small, div#edit{
+ height: 600px;
+}
+ 
+#leaflet_small{
+ width:30%;
+ float: left;
+ margin-top: 50px;
+ margin-left: 50px;
+}
+
+#leaflet_popup{
+ height: 400px;
+ width:75%;
+ float: left;
+ margin-top: 50px;
+ margin-left: 50px;
+ margin-bottom: 150px;
+}
+
+
+#vertical{
+	width:40%;
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+#graph{
+	margin-bottom: 20px;
+	margin-left: 50px;
+	width: 250px;
+	height: 460px;	
+	
+}
+#login_fields{
+	
+}
+
+.pointer{
+	cursor:pointer;
+	
+}
+
+div#edit{
+	width:35%;
+	float: left;
+	margin-left: 100px;
+	margin-top: 50px;
+	font-size: 14px;
+	color:darkblue;
+	border: solid 5px darkblue;
+	background: #EEE;
+	
+	
+	-webkit-border-top-left-radius: 7px;
+  	-webkit-border-top-right-radius: 7px;
+        
+	-moz-border-radius-topleft: 7px;
+        -moz-border-radius-topright: 7px;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px; 
+	-webkit-border-bottom-left-radius: 7px;
+  	-webkit-border-bottom-right-radius: 7px;
+        -moz-border-radius-bottomleft: 7px;
+        -moz-border-radius-bottomright: 7px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px; 
+}
+
+table#edit{
+	margin-left: 20px;
+}
+
+#edit tr{
+	text-align: left;
+}
+
+.movers {
+	border-top: solid 2px #CCC;
+	padding:20px;
+	width: 220px;
+	margin : 10px auto 0 auto;
+	/*float: left;*/
+
+	
+}
+.movers li{
+
+	list-style: square;
+	display: inline;
+}
+
+/*
+#blanco tr, td, th{
+	border: solid 1px red;
+	padding: 2px;
+	margin-left: 10px;
+	margin-right: 30px;
+	
+	
+}
+*/
+h1#logo {
+text-align: center;
+padding-top: 6px;
+font-family: 'Noto Serif', serif;
+font-weight: 700; 
+text-shadow: 1px 1px 3px #323232;
+}
+
+
+input[type=password], input[type=text], textarea { 
+    background-color: #FFF;
+    border: 2px solid #EEE;
+    height:20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+
+textarea {
+	height: auto;
+	width:180px;
+}
+	
+input[type=submit]{
+	color: #EEE;	
+	background-color: darkblue;
+	border: 2px solid #EEE;
+	padding:0 10px 0 10px;
+	height:40px;
+	cursor:pointer;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+#error {
+	color:darkred;	
+}
+
+#success{
+	color:darkgreen;	
+}

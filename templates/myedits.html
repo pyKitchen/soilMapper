@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load url from future %}
+{% block jqfunct %}
+<script>
+</script>
+{% endblock %}
+{% block content %}
+
+<div>
+	<h1>Edits by {{ user }}</h1>
+	{% for obj in track_edit_obj %}
+		{{ obj.date }}
+		{{ obj.user }}
+		<table>
+		{{ obj.edit|safe }}
+		{{ obj.upload }}
+		</table>
+		<hr>
+	{% endfor %}
+</div>
+{% endblock %}

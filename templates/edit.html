@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block jqfunct %}
+<script>    
+    $(document).ready(function(){
+        $("#vsoil tr:even").addClass('alternate');
+    });
+</script>    
+{% endblock %}
+
+{% block content %}
+{{ entry_get }}
+<div id="edit">
+    {% if obj.id %}
+    {% if flag %}
+	<h2 style="text-align: center; color: darkred;">{{ flag }}</h2>
+    {% else %}
+        <h2 style="text-align: center;">Point ID: {{ obj.id }}</h2>
+    {% endif %}
+	<table id="edit">
+	    <form action="edit" method="post">  {% csrf_token %}  
+	    {{ v_form }}
+	    <tr><td></td>
+	    <input type="hidden" name="id" value= {{ obj.id }}>
+	    <td><input type="submit" value="Save changes"></td></tr></form>
+	</table>
+	<div class="movers">
+	    <li><a href=edit?id={{ prev_id }}><b>< </b>previous entry |</a></li>
+	    <li><a href=edit?id={{ next_id }}> next entry <b>></b></a></li>
+	</div>
+	<div class="movers">
+	    <form action="edit" method="get">  {% csrf_token %}
+	    <input type="text" name="id" value="">
+	    <input type="submit" value="go to id"></form>
+	</div>
+
+    {% else %}
+	 <h2>To come: select by ID</h2>    
+    {% endif %}
+</div>
+
+
+<div id="leaflet_small"></div>
+        <script type="text/javascript">
+	       //var latlngs = {{ xy_start_end|safe }};
+	       var latlong = [{{ obj.latitude|safe}},{{ obj.longitude|safe}}]
+	       var map = L.map('leaflet_small').setView(latlong, 12);
+	       L.tileLayer('http://{s}.tile.cloudmade.com/439299294ed945808af82774cd1b55a0/997/256/{z}/{x}/{y}.png', {
+	       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+	       maxZoom: 18
+	       }).addTo(map);
+	       var marker = L.marker(latlong).addTo(map);
+	       //marker.bindPopup("<b>Location point ID {{ pnt_obj.id }} </b>").openPopup();
+	</script>
+
+
+{% endblock %}
